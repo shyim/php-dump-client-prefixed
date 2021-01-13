@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace _PhpScopereaa8bfd44f12\Symfony\Component\VarDumper\Exception;
+namespace _PhpScoper926b1169e332\Symfony\Component\VarDumper\Exception;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>

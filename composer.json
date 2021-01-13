@@ -3,7 +3,7 @@
     "license": "mit",
     "autoload": {
         "psr-4": {
-            "_PhpScopereaa8bfd44f12\\PhpDumpClient\\": "src\/"
+            "_PhpScoper926b1169e332\\PhpDumpClient\\": "src\/"
         },
         "files": [
             "functions.php"

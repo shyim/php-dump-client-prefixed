@@ -1,7 +1,7 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScopereaa8bfd44f12\Doctrine\SqlFormatter;
+namespace _PhpScoper926b1169e332\Doctrine\SqlFormatter;
 
 final class Cursor
 {
@@ -16,7 +16,7 @@ final class Cursor
     {
         $this->tokens = $tokens;
     }
-    public function next(?int $exceptTokenType = null) : ?\_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token
+    public function next(?int $exceptTokenType = null) : ?\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token
     {
         while ($token = $this->tokens[++$this->position] ?? null) {
             if ($exceptTokenType !== null && $token->isOfType($exceptTokenType)) {
@@ -26,7 +26,7 @@ final class Cursor
         }
         return null;
     }
-    public function previous(?int $exceptTokenType = null) : ?\_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token
+    public function previous(?int $exceptTokenType = null) : ?\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token
     {
         while ($token = $this->tokens[--$this->position] ?? null) {
             if ($exceptTokenType !== null && $token->isOfType($exceptTokenType)) {

@@ -1,8 +1,8 @@
 <?php
 
-namespace _PhpScopereaa8bfd44f12\PhpDumpClient\Message\Payload;
+namespace _PhpScoper926b1169e332\PhpDumpClient\Message\Payload;
 
-class CodePayload extends \_PhpScopereaa8bfd44f12\PhpDumpClient\Message\Payload\AbstractPayload
+class CodePayload extends \_PhpScoper926b1169e332\PhpDumpClient\Message\Payload\AbstractPayload
 {
     protected string $type = 'code';
     protected string $code;

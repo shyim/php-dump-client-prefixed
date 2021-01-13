@@ -1,7 +1,7 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScopereaa8bfd44f12\Doctrine\SqlFormatter;
+namespace _PhpScoper926b1169e332\Doctrine\SqlFormatter;
 
 use function in_array;
 use function strpos;

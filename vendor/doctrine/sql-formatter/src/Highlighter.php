@@ -1,11 +1,11 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScopereaa8bfd44f12\Doctrine\SqlFormatter;
+namespace _PhpScoper926b1169e332\Doctrine\SqlFormatter;
 
 interface Highlighter
 {
-    public const TOKEN_TYPE_TO_HIGHLIGHT = [\_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY => self::HIGHLIGHT_BOUNDARY, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WORD => self::HIGHLIGHT_WORD, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BACKTICK_QUOTE => self::HIGHLIGHT_BACKTICK_QUOTE, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_QUOTE => self::HIGHLIGHT_QUOTE, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED => self::HIGHLIGHT_RESERVED, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL => self::HIGHLIGHT_RESERVED, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE => self::HIGHLIGHT_RESERVED, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER => self::HIGHLIGHT_NUMBER, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_VARIABLE => self::HIGHLIGHT_VARIABLE, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT => self::HIGHLIGHT_COMMENT, \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT => self::HIGHLIGHT_COMMENT];
+    public const TOKEN_TYPE_TO_HIGHLIGHT = [\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY => self::HIGHLIGHT_BOUNDARY, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WORD => self::HIGHLIGHT_WORD, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BACKTICK_QUOTE => self::HIGHLIGHT_BACKTICK_QUOTE, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_QUOTE => self::HIGHLIGHT_QUOTE, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED => self::HIGHLIGHT_RESERVED, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL => self::HIGHLIGHT_RESERVED, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE => self::HIGHLIGHT_RESERVED, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER => self::HIGHLIGHT_NUMBER, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_VARIABLE => self::HIGHLIGHT_VARIABLE, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT => self::HIGHLIGHT_COMMENT, \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT => self::HIGHLIGHT_COMMENT];
     public const HIGHLIGHT_BOUNDARY = 'boundary';
     public const HIGHLIGHT_WORD = 'word';
     public const HIGHLIGHT_BACKTICK_QUOTE = 'backtickQuote';

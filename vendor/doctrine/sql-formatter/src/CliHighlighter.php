@@ -1,11 +1,11 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScopereaa8bfd44f12\Doctrine\SqlFormatter;
+namespace _PhpScoper926b1169e332\Doctrine\SqlFormatter;
 
 use function sprintf;
 use const PHP_EOL;
-final class CliHighlighter implements \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Highlighter
+final class CliHighlighter implements \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Highlighter
 {
     public const HIGHLIGHT_FUNCTIONS = 'functions';
     /** @var array<string, string> */
@@ -19,7 +19,7 @@ final class CliHighlighter implements \_PhpScopereaa8bfd44f12\Doctrine\SqlFormat
     }
     public function highlightToken(int $type, string $value) : string
     {
-        if ($type === \_PhpScopereaa8bfd44f12\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY && ($value === '(' || $value === ')')) {
+        if ($type === \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY && ($value === '(' || $value === ')')) {
             return $value;
         }
         $prefix = $this->prefix($type);

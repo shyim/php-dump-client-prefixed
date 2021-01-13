@@ -1,6 +1,6 @@
 <?php
 
-namespace _PhpScopereaa8bfd44f12\PhpDumpClient;
+namespace _PhpScoper926b1169e332\PhpDumpClient;
 
 class Struct implements \JsonSerializable
 {
