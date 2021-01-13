@@ -1,8 +1,8 @@
 <?php
 
-namespace _PhpScoper926b1169e332\PhpDumpClient\Message\Payload;
+namespace _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload;
 
-class PausePayload extends \_PhpScoper926b1169e332\PhpDumpClient\Message\Payload\AbstractPayload
+class PausePayload extends \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\AbstractPayload
 {
     protected string $type = 'pause';
 }

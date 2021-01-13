@@ -1,8 +1,8 @@
 <?php
 
-namespace _PhpScoper926b1169e332\PhpDumpClient\Message\Payload;
+namespace _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload;
 
-class HtmlPayload extends \_PhpScoper926b1169e332\PhpDumpClient\Message\Payload\AbstractPayload
+class HtmlPayload extends \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\AbstractPayload
 {
     protected string $type = 'html';
     protected string $content;

@@ -34,7 +34,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "_PhpScoper926b1169e332\\Doctrine\\SqlFormatter\\": "src"
+                    "_PhpScoper5aadddf2c2bd\\Doctrine\\SqlFormatter\\": "src"
                 }
             },
             "notification-url": "https:\/\/packagist.org\/downloads\/",
@@ -95,7 +95,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "_PhpScoper926b1169e332\\Symfony\\Polyfill\\Mbstring\\": ""
+                    "_PhpScoper5aadddf2c2bd\\Symfony\\Polyfill\\Mbstring\\": ""
                 },
                 "files": [
                     "bootstrap.php"
@@ -175,7 +175,7 @@
             "installation-source": "dist",
             "autoload": {
                 "psr-4": {
-                    "_PhpScoper926b1169e332\\Symfony\\Polyfill\\Php80\\": ""
+                    "_PhpScoper5aadddf2c2bd\\Symfony\\Polyfill\\Php80\\": ""
                 },
                 "files": [
                     "bootstrap.php"
@@ -275,7 +275,7 @@
                     "Resources\/functions\/dump.php"
                 ],
                 "psr-4": {
-                    "_PhpScoper926b1169e332\\Symfony\\Component\\VarDumper\\": ""
+                    "_PhpScoper5aadddf2c2bd\\Symfony\\Component\\VarDumper\\": ""
                 },
                 "exclude-from-classmap": [
                     "\/Tests\/"

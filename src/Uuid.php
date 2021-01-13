@@ -1,6 +1,6 @@
 <?php
 
-namespace _PhpScoper926b1169e332\PhpDumpClient;
+namespace _PhpScoper5aadddf2c2bd\PhpDumpClient;
 
 class Uuid
 {

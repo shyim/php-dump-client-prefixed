@@ -6,9 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '_PhpScoper926b1169e332\\Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
-    '_PhpScoper926b1169e332\\Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
-    '_PhpScoper926b1169e332\\Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
-    '_PhpScoper926b1169e332\\PhpDumpClient\\' => array($baseDir . '/src'),
-    '_PhpScoper926b1169e332\\Doctrine\\SqlFormatter\\' => array($vendorDir . '/doctrine/sql-formatter/src'),
+    '_PhpScoper5aadddf2c2bd\\Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
+    '_PhpScoper5aadddf2c2bd\\Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    '_PhpScoper5aadddf2c2bd\\Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    '_PhpScoper5aadddf2c2bd\\PhpDumpClient\\' => array($baseDir . '/src'),
+    '_PhpScoper5aadddf2c2bd\\Doctrine\\SqlFormatter\\' => array($vendorDir . '/doctrine/sql-formatter/src'),
 );

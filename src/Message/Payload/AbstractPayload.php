@@ -1,9 +1,9 @@
 <?php
 
-namespace _PhpScoper926b1169e332\PhpDumpClient\Message\Payload;
+namespace _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload;
 
-use _PhpScoper926b1169e332\PhpDumpClient\Struct;
-abstract class AbstractPayload extends \_PhpScoper926b1169e332\PhpDumpClient\Struct
+use _PhpScoper5aadddf2c2bd\PhpDumpClient\Struct;
+abstract class AbstractPayload extends \_PhpScoper5aadddf2c2bd\PhpDumpClient\Struct
 {
     protected string $type;
 }

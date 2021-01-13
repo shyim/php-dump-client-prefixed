@@ -2,13 +2,13 @@
 
 
 
-use _PhpScoper926b1169e332\PhpDumpClient\Client;
+use _PhpScoper5aadddf2c2bd\PhpDumpClient\Client;
 if (!\function_exists('pd')) {
-    function pd() : \_PhpScoper926b1169e332\PhpDumpClient\Client
+    function pd() : \_PhpScoper5aadddf2c2bd\PhpDumpClient\Client
     {
         static $client;
         if ($client === null) {
-            $client = new \_PhpScoper926b1169e332\PhpDumpClient\Client();
+            $client = new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Client();
         }
         return $client;
     }

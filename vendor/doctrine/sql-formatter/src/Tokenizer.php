@@ -1,7 +1,7 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScoper926b1169e332\Doctrine\SqlFormatter;
+namespace _PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter;
 
 use function array_combine;
 use function array_keys;
@@ -79,7 +79,7 @@ final class Tokenizer
      *
      * @param string $string The SQL string
      */
-    public function tokenize(string $string) : \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Cursor
+    public function tokenize(string $string) : \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Cursor
     {
         $tokens = [];
         // Used to make sure the string keeps shrinking on each iteration
@@ -90,8 +90,8 @@ final class Tokenizer
         while ($currentLength) {
             // If the string stopped shrinking, there was a problem
             if ($oldStringLen <= $currentLength) {
-                $tokens[] = new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_ERROR, $string);
-                return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Cursor($tokens);
+                $tokens[] = new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_ERROR, $string);
+                return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Cursor($tokens);
             }
             $oldStringLen = $currentLength;
             // Get the next token and the token type
@@ -102,7 +102,7 @@ final class Tokenizer
             $string = \substr($string, $tokenLength);
             $currentLength -= $tokenLength;
         }
-        return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Cursor($tokens);
+        return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Cursor($tokens);
     }
     /**
      * Return the next token and token type in a SQL string.
@@ -114,39 +114,39 @@ final class Tokenizer
      *
      * @return Token An associative array containing the type and value of the token.
      */
-    private function createNextToken(string $string, ?\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token $previous = null) : \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token
+    private function createNextToken(string $string, ?\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token $previous = null) : \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token
     {
         $matches = [];
         // Whitespace
         if (\preg_match('/^\\s+/', $string, $matches)) {
-            return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE, $matches[0]);
+            return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE, $matches[0]);
         }
         // Comment
         if ($string[0] === '#' || (isset($string[1]) && ($string[0] === '-' && $string[1] === '-') || isset($string[1]) && $string[0] === '/' && $string[1] === '*')) {
             // Comment until end of line
             if ($string[0] === '-' || $string[0] === '#') {
                 $last = \strpos($string, "\n");
-                $type = \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT;
+                $type = \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT;
             } else {
                 // Comment until closing comment tag
                 $pos = \strpos($string, '*/', 2);
                 \assert($pos !== \false);
                 $last = $pos + 2;
-                $type = \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT;
+                $type = \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT;
             }
             if ($last === \false) {
                 $last = \strlen($string);
             }
-            return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token($type, \substr($string, 0, $last));
+            return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token($type, \substr($string, 0, $last));
         }
         // Quoted String
         if ($string[0] === '"' || $string[0] === '\'' || $string[0] === '`' || $string[0] === '[') {
-            return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token($string[0] === '`' || $string[0] === '[' ? \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BACKTICK_QUOTE : \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_QUOTE, $this->getQuotedString($string));
+            return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token($string[0] === '`' || $string[0] === '[' ? \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BACKTICK_QUOTE : \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_QUOTE, $this->getQuotedString($string));
         }
         // User-defined Variable
         if (($string[0] === '@' || $string[0] === ':') && isset($string[1])) {
             $value = null;
-            $type = \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_VARIABLE;
+            $type = \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_VARIABLE;
             // If the variable name is quoted
             if ($string[1] === '"' || $string[1] === '\'' || $string[1] === '`') {
                 $value = $string[0] . $this->getQuotedString(\substr($string, 1));
@@ -158,16 +158,16 @@ final class Tokenizer
                 }
             }
             if ($value !== null) {
-                return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token($type, $value);
+                return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token($type, $value);
             }
         }
         // Number (decimal, binary, or hex)
         if (\preg_match('/^([0-9]+(\\.[0-9]+)?|0x[0-9a-fA-F]+|0b[01]+)($|\\s|"\'`|' . $this->regexBoundaries . ')/', $string, $matches)) {
-            return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER, $matches[1]);
+            return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER, $matches[1]);
         }
         // Boundary Character (punctuation and symbols)
         if (\preg_match('/^(' . $this->regexBoundaries . ')/', $string, $matches)) {
-            return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY, $matches[1]);
+            return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY, $matches[1]);
         }
         // A reserved word cannot be preceded by a '.'
         // this makes it so in "mytable.from", "from" is not considered a reserved word
@@ -175,15 +175,15 @@ final class Tokenizer
             $upper = \strtoupper($string);
             // Top Level Reserved Word
             if (\preg_match('/^(' . $this->regexReservedToplevel . ')($|\\s|' . $this->regexBoundaries . ')/', $upper, $matches)) {
-                return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL, \substr($string, 0, \strlen($matches[1])));
+                return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL, \substr($string, 0, \strlen($matches[1])));
             }
             // Newline Reserved Word
             if (\preg_match('/^(' . $this->regexReservedNewline . ')($|\\s|' . $this->regexBoundaries . ')/', $upper, $matches)) {
-                return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE, \substr($string, 0, \strlen($matches[1])));
+                return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE, \substr($string, 0, \strlen($matches[1])));
             }
             // Other Reserved Word
             if (\preg_match('/^(' . $this->regexReserved . ')($|\\s|' . $this->regexBoundaries . ')/', $upper, $matches)) {
-                return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED, \substr($string, 0, \strlen($matches[1])));
+                return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED, \substr($string, 0, \strlen($matches[1])));
             }
         }
         // A function must be succeeded by '('
@@ -191,11 +191,11 @@ final class Tokenizer
         $upper = \strtoupper($string);
         // function
         if (\preg_match('/^(' . $this->regexFunction . '[(]|\\s|[)])/', $upper, $matches)) {
-            return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED, \substr($string, 0, \strlen($matches[1]) - 1));
+            return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED, \substr($string, 0, \strlen($matches[1]) - 1));
         }
         // Non reserved word
         \preg_match('/^(.*?)($|\\s|["\'`]|' . $this->regexBoundaries . ')/', $string, $matches);
-        return new \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token(\_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WORD, $matches[1]);
+        return new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WORD, $matches[1]);
     }
     /**
      * Helper function for building regular expressions for reserved words and boundary characters

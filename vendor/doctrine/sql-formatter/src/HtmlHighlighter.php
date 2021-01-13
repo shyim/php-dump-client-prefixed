@@ -1,7 +1,7 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScoper926b1169e332\Doctrine\SqlFormatter;
+namespace _PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter;
 
 use function htmlentities;
 use function sprintf;
@@ -9,7 +9,7 @@ use function trim;
 use const ENT_COMPAT;
 use const ENT_IGNORE;
 use const PHP_EOL;
-final class HtmlHighlighter implements \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Highlighter
+final class HtmlHighlighter implements \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Highlighter
 {
     public const HIGHLIGHT_PRE = 'pre';
     /**
@@ -31,7 +31,7 @@ final class HtmlHighlighter implements \_PhpScoper926b1169e332\Doctrine\SqlForma
     public function highlightToken(int $type, string $value) : string
     {
         $value = \htmlentities($value, \ENT_COMPAT | \ENT_IGNORE, 'UTF-8');
-        if ($type === \_PhpScoper926b1169e332\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY && ($value === '(' || $value === ')')) {
+        if ($type === \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY && ($value === '(' || $value === ')')) {
             return $value;
         }
         $attributes = $this->attributes($type);

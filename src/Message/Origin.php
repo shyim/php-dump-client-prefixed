@@ -1,9 +1,9 @@
 <?php
 
-namespace _PhpScoper926b1169e332\PhpDumpClient\Message;
+namespace _PhpScoper5aadddf2c2bd\PhpDumpClient\Message;
 
-use _PhpScoper926b1169e332\PhpDumpClient\Struct;
-class Origin extends \_PhpScoper926b1169e332\PhpDumpClient\Struct
+use _PhpScoper5aadddf2c2bd\PhpDumpClient\Struct;
+class Origin extends \_PhpScoper5aadddf2c2bd\PhpDumpClient\Struct
 {
     protected string $fileName;
     protected int $lineNumber;
