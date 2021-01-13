@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php 
-namespace _PhpScoper5aadddf2c2bd;
+namespace _PhpScoper3fe455fa007d;
 
 if ("cli" !== \php_sapi_name()) {
     echo "<p>Run this PHP script from the command line to see CLI syntax highlighting and formatting.  It supports Unix pipes or command line argument style.</p>";
@@ -14,4 +14,4 @@ if (isset($argv[1])) {
     $sql = \stream_get_contents(\fopen('php://stdin', 'r'));
 }
 require_once __DIR__ . '/../vendor/autoload.php';
-echo (new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\SqlFormatter())->format($sql);
+echo (new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter())->format($sql);

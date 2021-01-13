@@ -7,7 +7,7 @@ declare (strict_types=1);
  *
  * @link       http://github.com/jdorn/sql-formatter
  */
-namespace _PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter;
+namespace _PhpScoper3fe455fa007d\Doctrine\SqlFormatter;
 
 use function array_search;
 use function array_shift;
@@ -28,10 +28,10 @@ final class SqlFormatter
     private $highlighter;
     /** @var Tokenizer */
     private $tokenizer;
-    public function __construct(?\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Highlighter $highlighter = null)
+    public function __construct(?\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Highlighter $highlighter = null)
     {
-        $this->tokenizer = new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Tokenizer();
-        $this->highlighter = $highlighter ?? (\PHP_SAPI === 'cli' ? new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\CliHighlighter() : new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\HtmlHighlighter());
+        $this->tokenizer = new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Tokenizer();
+        $this->highlighter = $highlighter ?? (\PHP_SAPI === 'cli' ? new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\CliHighlighter() : new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\HtmlHighlighter());
     }
     /**
      * Format the whitespace in a SQL string to make it easier to read.
@@ -59,7 +59,7 @@ final class SqlFormatter
         // Tokenize String
         $cursor = $this->tokenizer->tokenize($string);
         // Format token by token
-        while ($token = $cursor->next(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
+        while ($token = $cursor->next(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
             $highlighted = $this->highlighter->highlightToken($token->type(), $token->value());
             // If we are increasing the special indent level now
             if ($increaseSpecialIndent) {
@@ -83,8 +83,8 @@ final class SqlFormatter
                 $addedNewline = \false;
             }
             // Display comments directly where they appear in the source
-            if ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
-                if ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
+            if ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
+                if ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
                     $indent = \str_repeat($tab, $indentLevel);
                     $return = \rtrim($return, " \t");
                     $return .= "\n" . $indent;
@@ -125,7 +125,7 @@ final class SqlFormatter
                 $subCursor = $cursor->subCursor();
                 for ($j = 1; $j <= 250; $j++) {
                     // Reached end of string
-                    $next = $subCursor->next(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
+                    $next = $subCursor->next(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
                     if (!$next) {
                         break;
                     }
@@ -141,7 +141,7 @@ final class SqlFormatter
                         break;
                     }
                     // Reached an invalid token type for inline parentheses
-                    if ($next->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
+                    if ($next->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
                         break;
                     }
                     $length += \strlen($next->value());
@@ -153,7 +153,7 @@ final class SqlFormatter
                 }
                 // Take out the preceding space unless there was whitespace there in the original query
                 $prevToken = $cursor->subCursor()->previous();
-                if ($prevToken && !$prevToken->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
+                if ($prevToken && !$prevToken->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
                     $return = \rtrim($return, ' ');
                 }
                 if (!$inlineParentheses) {
@@ -183,7 +183,7 @@ final class SqlFormatter
                 if (!$addedNewline) {
                     $return .= "\n" . \str_repeat($tab, $indentLevel);
                 }
-            } elseif ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL)) {
+            } elseif ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL)) {
                 // Top level reserved words start a new line and increase the special indent level
                 $increaseSpecialIndent = \true;
                 // If the last indent type was 'special', decrease the special indent for this round
@@ -209,7 +209,7 @@ final class SqlFormatter
                 if ($token->value() === 'LIMIT' && !$inlineParentheses) {
                     $clauseLimit = \true;
                 }
-            } elseif ($clauseLimit && $token->value() !== ',' && !$token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
+            } elseif ($clauseLimit && $token->value() !== ',' && !$token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
                 // Checks if we are out of the limit clause
                 $clauseLimit = \false;
             } elseif ($token->value() === ',' && !$inlineParentheses) {
@@ -222,7 +222,7 @@ final class SqlFormatter
                     // All other cases of commas
                     $newline = \true;
                 }
-            } elseif ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE)) {
+            } elseif ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE)) {
                 // Newline reserved words start a new line
                 // Add a newline before the reserved word (if not already added)
                 if (!$addedNewline) {
@@ -232,12 +232,12 @@ final class SqlFormatter
                 if ($token->hasExtraWhitespace()) {
                     $highlighted = \preg_replace('/\\s+/', ' ', $highlighted);
                 }
-            } elseif ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY)) {
+            } elseif ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY)) {
                 // Multiple boundary characters in a row should not have spaces between them (not including parentheses)
-                $prevNotWhitespaceToken = $cursor->subCursor()->previous(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
-                if ($prevNotWhitespaceToken && $prevNotWhitespaceToken->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY)) {
+                $prevNotWhitespaceToken = $cursor->subCursor()->previous(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
+                if ($prevNotWhitespaceToken && $prevNotWhitespaceToken->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BOUNDARY)) {
                     $prevToken = $cursor->subCursor()->previous();
-                    if ($prevToken && !$prevToken->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
+                    if ($prevToken && !$prevToken->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
                         $return = \rtrim($return, ' ');
                     }
                 }
@@ -255,15 +255,15 @@ final class SqlFormatter
             if ($token->value() !== '-') {
                 continue;
             }
-            $nextNotWhitespace = $cursor->subCursor()->next(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
-            if (!$nextNotWhitespace || !$nextNotWhitespace->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER)) {
+            $nextNotWhitespace = $cursor->subCursor()->next(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
+            if (!$nextNotWhitespace || !$nextNotWhitespace->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER)) {
                 continue;
             }
-            $prev = $cursor->subCursor()->previous(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
+            $prev = $cursor->subCursor()->previous(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE);
             if (!$prev) {
                 continue;
             }
-            if ($prev->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_QUOTE, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BACKTICK_QUOTE, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WORD, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER)) {
+            if ($prev->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_QUOTE, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BACKTICK_QUOTE, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WORD, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_NUMBER)) {
                 continue;
             }
             $return = \rtrim($return, ' ');
@@ -307,16 +307,16 @@ final class SqlFormatter
         $whitespace = \true;
         while ($token = $cursor->next()) {
             // Skip comment tokens
-            if ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
+            if ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_COMMENT, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_BLOCK_COMMENT)) {
                 continue;
             }
             // Remove extra whitespace in reserved words (e.g "OUTER     JOIN" becomes "OUTER JOIN")
-            if ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE, \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL)) {
+            if ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_NEWLINE, \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_RESERVED_TOPLEVEL)) {
                 $newValue = \preg_replace('/\\s+/', ' ', $token->value());
                 \assert($newValue !== null);
                 $token = $token->withValue($newValue);
             }
-            if ($token->isOfType(\_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
+            if ($token->isOfType(\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Token::TOKEN_TYPE_WHITESPACE)) {
                 // If the last token was whitespace, don't add another one
                 if ($whitespace) {
                     continue;

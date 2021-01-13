@@ -1,8 +1,8 @@
 <?php
 
-namespace _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload;
+namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload;
 
-class ClearPayload extends \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\AbstractPayload
+class ClearPayload extends \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload
 {
     protected string $type = 'clear';
 }

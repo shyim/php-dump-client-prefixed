@@ -1,18 +1,18 @@
 <?php
 
-namespace _PhpScoper5aadddf2c2bd\PhpDumpClient;
+namespace _PhpScoper3fe455fa007d\PhpDumpClient;
 
-use _PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\NullHighlighter;
-use _PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\SqlFormatter;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Message;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\ClearPayload;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\CodePayload;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\HtmlPayload;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\PausePayload;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\TablePayload;
-use _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Timer;
-use _PhpScoper5aadddf2c2bd\Symfony\Component\VarDumper\Cloner\VarCloner;
-use _PhpScoper5aadddf2c2bd\Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\NullHighlighter;
+use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Message;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\ClearPayload;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\CodePayload;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\PausePayload;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Timer;
+use _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\VarCloner;
+use _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\HtmlDumper;
 class Client
 {
     private string $instanceUrl;
@@ -31,12 +31,12 @@ class Client
     public function log(...$arguments) : self
     {
         $msg = $this->createMessage();
-        $cloner = new \_PhpScoper5aadddf2c2bd\Symfony\Component\VarDumper\Cloner\VarCloner();
+        $cloner = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\VarCloner();
         $cloner->setMaxItems(-1);
-        $htmlDumper = new \_PhpScoper5aadddf2c2bd\Symfony\Component\VarDumper\Dumper\HtmlDumper();
+        $htmlDumper = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\HtmlDumper();
         foreach ($arguments as $argument) {
             $data = $htmlDumper->dump($cloner->cloneVar($argument), \true);
-            $msg->payload(new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\HtmlPayload($data));
+            $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload($data));
         }
         $this->send($msg);
         return $this;
@@ -48,7 +48,7 @@ class Client
             return $this;
         }
         $backtraces = \array_slice($backtraces, 1);
-        $table = new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\TablePayload(['File', 'Function']);
+        $table = new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload(['File', 'Function']);
         foreach ($backtraces as $backtrace) {
             $table->addRow(\sprintf('%s:%s', $this->stripPath($backtrace['file']), $backtrace['line']), $backtrace['function']);
         }
@@ -60,13 +60,13 @@ class Client
     public function clear() : self
     {
         $msg = $this->createMessage();
-        $msg->payload(new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\ClearPayload());
+        $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\ClearPayload());
         $this->send($msg);
         return $this;
     }
-    public function time(string $title, ?callable $func = null) : \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Timer
+    public function time(string $title, ?callable $func = null) : \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Timer
     {
-        $t = new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Timer($title, $this->createMessage(), $this);
+        $t = new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Timer($title, $this->createMessage(), $this);
         if ($func === null) {
             return $t;
         }
@@ -84,9 +84,9 @@ class Client
     {
         $msg = $this->createMessage();
         if ($title) {
-            $msg->payload(new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\HtmlPayload($title));
+            $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload($title));
         }
-        $msg->payload(new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\PausePayload());
+        $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\PausePayload());
         $this->send($msg);
         while ($this->lockExists($msg->getId())) {
             \sleep(1);
@@ -96,16 +96,16 @@ class Client
     public function logSql(string $sql) : self
     {
         $msg = $this->createMessage();
-        $msg->payload(new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\CodePayload((new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\SqlFormatter(new \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\NullHighlighter()))->format($sql), 'sql'));
+        $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\CodePayload((new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter(new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\NullHighlighter()))->format($sql), 'sql'));
         $this->send($msg);
         return $this;
     }
-    protected function createMessage() : \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Message
+    protected function createMessage() : \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message
     {
         $backtrace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        return new \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Message($this->stripPath($backtrace[1]['file']), $backtrace[1]['line']);
+        return new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message($this->stripPath($backtrace[1]['file']), $backtrace[1]['line']);
     }
-    public function send(\_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Message $message) : void
+    public function send(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message $message) : void
     {
         $message->tag(...$this->tags);
         $ch = \curl_init($this->instanceUrl . '/client');
@@ -113,7 +113,7 @@ class Client
         \curl_setopt($ch, \CURLOPT_POSTFIELDS, \json_encode($message));
         \curl_setopt($ch, \CURLOPT_RETURNTRANSFER, \true);
         $headers = ['pd-id:' . $message->getId()];
-        if ($message->hasPayload(\_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\PausePayload::class)) {
+        if ($message->hasPayload(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\PausePayload::class)) {
             $headers[] = 'pd-action:pause';
         }
         \curl_setopt($ch, \CURLOPT_HTTPHEADER, $headers);

@@ -1,8 +1,8 @@
 <?php
 
-namespace _PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload;
+namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload;
 
-class TablePayload extends \_PhpScoper5aadddf2c2bd\PhpDumpClient\Message\Payload\AbstractPayload
+class TablePayload extends \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload
 {
     protected string $type = 'table';
     protected array $headers = [];

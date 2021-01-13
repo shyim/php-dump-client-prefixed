@@ -3,14 +3,14 @@
     "license": "mit",
     "autoload": {
         "psr-4": {
-            "_PhpScoper5aadddf2c2bd\\PhpDumpClient\\": "src\/"
+            "_PhpScoper3fe455fa007d\\PhpDumpClient\\": "src\/"
         },
         "files": [
             "functions.php"
         ]
     },
     "require": {
-        "php": "^7.4",
+        "php": ">=7.4",
         "ext-curl": "*",
         "ext-json": "*"
     },

@@ -1,9 +1,9 @@
 <?php
 
 declare (strict_types=1);
-namespace _PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter;
+namespace _PhpScoper3fe455fa007d\Doctrine\SqlFormatter;
 
-final class NullHighlighter implements \_PhpScoper5aadddf2c2bd\Doctrine\SqlFormatter\Highlighter
+final class NullHighlighter implements \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\Highlighter
 {
     public function highlightToken(int $type, string $value) : string
     {
