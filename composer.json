@@ -1,0 +1,20 @@
+{
+    "name": "shyim\/php-dump-client-prefixed",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "_PhpScopereaa8bfd44f12\\PhpDumpClient\\": "src\/"
+        },
+        "files": [
+            "functions.php"
+        ]
+    },
+    "require": {
+        "php": "^7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
