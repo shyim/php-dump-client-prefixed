@@ -24,8 +24,8 @@ if (!class_exists('Attribute', false) && !interface_exists('Attribute', false) &
 if (!class_exists('Normalizer', false) && !interface_exists('Normalizer', false) && !trait_exists('Normalizer', false)) {
     spl_autoload_call('_PhpScoper3fe455fa007d\Normalizer');
 }
-if (!class_exists('ComposerAutoloaderInit081cb7c675f4bc4ba6bf2d8c60dfaadd', false) && !interface_exists('ComposerAutoloaderInit081cb7c675f4bc4ba6bf2d8c60dfaadd', false) && !trait_exists('ComposerAutoloaderInit081cb7c675f4bc4ba6bf2d8c60dfaadd', false)) {
-    spl_autoload_call('_PhpScoper3fe455fa007d\ComposerAutoloaderInit081cb7c675f4bc4ba6bf2d8c60dfaadd');
+if (!class_exists('ComposerAutoloaderInitf25c6c739628edb1a2aff8176b3e184a', false) && !interface_exists('ComposerAutoloaderInitf25c6c739628edb1a2aff8176b3e184a', false) && !trait_exists('ComposerAutoloaderInitf25c6c739628edb1a2aff8176b3e184a', false)) {
+    spl_autoload_call('_PhpScoper3fe455fa007d\ComposerAutoloaderInitf25c6c739628edb1a2aff8176b3e184a');
 }
 
 // Functions whitelisting. For more information see:
@@ -55,9 +55,24 @@ if (!function_exists('trigger_deprecation')) {
         return \_PhpScoper3fe455fa007d\trigger_deprecation(...func_get_args());
     }
 }
-if (!function_exists('composerRequire081cb7c675f4bc4ba6bf2d8c60dfaadd')) {
-    function composerRequire081cb7c675f4bc4ba6bf2d8c60dfaadd() {
-        return \_PhpScoper3fe455fa007d\composerRequire081cb7c675f4bc4ba6bf2d8c60dfaadd(...func_get_args());
+if (!function_exists('SQLSRV_PHPTYPE_STREAM')) {
+    function SQLSRV_PHPTYPE_STREAM() {
+        return \_PhpScoper3fe455fa007d\SQLSRV_PHPTYPE_STREAM(...func_get_args());
+    }
+}
+if (!function_exists('SQLSRV_SQLTYPE_VARBINARY')) {
+    function SQLSRV_SQLTYPE_VARBINARY() {
+        return \_PhpScoper3fe455fa007d\SQLSRV_SQLTYPE_VARBINARY(...func_get_args());
+    }
+}
+if (!function_exists('SQLSRV_PHPTYPE_STRING')) {
+    function SQLSRV_PHPTYPE_STRING() {
+        return \_PhpScoper3fe455fa007d\SQLSRV_PHPTYPE_STRING(...func_get_args());
+    }
+}
+if (!function_exists('composerRequiref25c6c739628edb1a2aff8176b3e184a')) {
+    function composerRequiref25c6c739628edb1a2aff8176b3e184a() {
+        return \_PhpScoper3fe455fa007d\composerRequiref25c6c739628edb1a2aff8176b3e184a(...func_get_args());
     }
 }
 if (!function_exists('foo')) {

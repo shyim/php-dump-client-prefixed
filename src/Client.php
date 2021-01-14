@@ -5,6 +5,7 @@ namespace _PhpScoper3fe455fa007d\PhpDumpClient;
 
 use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\NullHighlighter;
 use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter;
+use _PhpScoper3fe455fa007d\PhpDumpClient\Extensions\Doctrine;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Message;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\ClearPayload;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\CodePayload;
@@ -106,6 +107,10 @@ class Client
         $this->send($msg);
         return $this;
     }
+    public function doctrine() : \_PhpScoper3fe455fa007d\PhpDumpClient\Extensions\Doctrine
+    {
+        return new \_PhpScoper3fe455fa007d\PhpDumpClient\Extensions\Doctrine($this);
+    }
     public function send(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message $message) : void
     {
         $message->tag(...$this->tags);
@@ -123,8 +128,14 @@ class Client
     }
     protected function createMessage() : \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message
     {
-        $backtrace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        return new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message($this->stripPath($backtrace[1]['file']), $backtrace[1]['line']);
+        $backtrace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 10);
+        foreach ($backtrace as $backtrace) {
+            if (\strpos($backtrace['file'], __DIR__) === 0) {
+                continue;
+            }
+            return new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message($this->stripPath($backtrace['file']), $backtrace['line']);
+        }
+        throw new \RuntimeException('Cannot detect entry point');
     }
     private function lockExists(string $id) : bool
     {

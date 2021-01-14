@@ -29,9 +29,13 @@ return array(
     '_PhpScoper3fe455fa007d\\Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     '_PhpScoper3fe455fa007d\\PhpDumpClient\\' => array($baseDir . '/src'),
     '_PhpScoper3fe455fa007d\\PhpCsFixer\\' => array($vendorDir . '/friendsofphp/php-cs-fixer/src'),
+    '_PhpScoper3fe455fa007d\\PackageVersions\\' => array($vendorDir . '/composer/package-versions-deprecated/src/PackageVersions'),
     '_PhpScoper3fe455fa007d\\Doctrine\\SqlFormatter\\' => array($vendorDir . '/doctrine/sql-formatter/src'),
+    '_PhpScoper3fe455fa007d\\Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/src'),
     '_PhpScoper3fe455fa007d\\Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib/Doctrine/Common/Lexer'),
+    '_PhpScoper3fe455fa007d\\Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     '_PhpScoper3fe455fa007d\\Doctrine\\Common\\Annotations\\' => array($vendorDir . '/doctrine/annotations/lib/Doctrine/Common/Annotations'),
+    '_PhpScoper3fe455fa007d\\Doctrine\\Common\\' => array($vendorDir . '/doctrine/event-manager/lib/Doctrine/Common'),
     '_PhpScoper3fe455fa007d\\Composer\\XdebugHandler\\' => array($vendorDir . '/composer/xdebug-handler/src'),
     '_PhpScoper3fe455fa007d\\Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
 );
