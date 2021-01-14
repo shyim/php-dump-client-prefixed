@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types=1);
 require __DIR__ . '/vendor/autoload.php';
 
 use _PhpScoper3fe455fa007d\PhpDumpClient\Client;

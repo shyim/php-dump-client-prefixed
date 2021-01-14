@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types=1);
 namespace _PhpScoper3fe455fa007d\PhpDumpClient;
 
 use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\NullHighlighter;
@@ -50,7 +51,12 @@ class Client
         $backtraces = \array_slice($backtraces, 1);
         $table = new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload(['File', 'Function']);
         foreach ($backtraces as $backtrace) {
-            $table->addRow(\sprintf('%s:%s', $this->stripPath($backtrace['file']), $backtrace['line']), $backtrace['function']);
+            if ($backtrace['file'] === __FILE__) {
+                continue;
+            }
+            $function = $backtrace['class'] ? $backtrace['class'] . ':' : '';
+            $function .= $backtrace['function'];
+            $table->addRow(\sprintf('%s:%s', $this->stripPath($backtrace['file']), $backtrace['line']), $function);
         }
         $msg = $this->createMessage();
         $msg->payload($table);
@@ -100,11 +106,6 @@ class Client
         $this->send($msg);
         return $this;
     }
-    protected function createMessage() : \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message
-    {
-        $backtrace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-        return new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message($this->stripPath($backtrace[1]['file']), $backtrace[1]['line']);
-    }
     public function send(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message $message) : void
     {
         $message->tag(...$this->tags);
@@ -120,6 +121,11 @@ class Client
         \curl_exec($ch);
         \curl_close($ch);
     }
+    protected function createMessage() : \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message
+    {
+        $backtrace = \debug_backtrace(\DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        return new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message($this->stripPath($backtrace[1]['file']), $backtrace[1]['line']);
+    }
     private function lockExists(string $id) : bool
     {
         $ch = \curl_init($this->instanceUrl . '/is-locked');
@@ -133,8 +139,8 @@ class Client
     private function stripPath(string $path) : string
     {
         $currentFolder = \getcwd();
-        if (\strpos($path, $currentFolder) === 0) {
-            return \substr($path, \strlen($currentFolder) + 1);
+        if (\mb_strpos($path, $currentFolder) === 0) {
+            return \mb_substr($path, \mb_strlen($currentFolder) + 1);
         }
         return $path;
     }

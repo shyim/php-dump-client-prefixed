@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types=1);
 namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message;
 
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload;
@@ -29,7 +30,7 @@ class Message extends \_PhpScoper3fe455fa007d\PhpDumpClient\Struct
         $this->tags = [...$this->tags, ...$tag];
         return $this;
     }
-    function payload(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload $payload) : self
+    public function payload(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload $payload) : self
     {
         $this->payloads[] = $payload;
         return $this;

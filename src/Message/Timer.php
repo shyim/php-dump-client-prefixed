@@ -1,5 +1,6 @@
 <?php
 
+declare (strict_types=1);
 namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message;
 
 use _PhpScoper3fe455fa007d\PhpDumpClient\Client;
