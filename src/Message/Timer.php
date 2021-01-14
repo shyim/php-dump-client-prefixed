@@ -8,7 +8,7 @@ use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload;
 class Timer
 {
-    private int $time;
+    private float $time;
     private int $memoryUsage;
     private int $peakMemoryUsage;
     private \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload $table;
@@ -41,7 +41,7 @@ class Timer
     {
         $currentMemoryUsage = \memory_get_usage(\true);
         $currentPeakMemoryUsage = \memory_get_peak_usage(\true);
-        $this->table->addRow(\microtime(\true) - $this->time, $this->formatBytes($currentMemoryUsage), $this->formatBytes($currentPeakMemoryUsage));
+        $this->table->addRow((string) (\microtime(\true) - $this->time), $this->formatBytes($currentMemoryUsage), $this->formatBytes($currentPeakMemoryUsage));
         $this->time = \microtime(\true);
         $this->memoryUsage = $currentMemoryUsage;
         $this->peakMemoryUsage = $currentPeakMemoryUsage;

@@ -18,8 +18,8 @@ if (!class_exists('UnhandledMatchError', false) && !interface_exists('UnhandledM
 if (!class_exists('Attribute', false) && !interface_exists('Attribute', false) && !trait_exists('Attribute', false)) {
     spl_autoload_call('_PhpScoper3fe455fa007d\Attribute');
 }
-if (!class_exists('ComposerAutoloaderInit9e212646fba0cf53f94974beeb9bb612', false) && !interface_exists('ComposerAutoloaderInit9e212646fba0cf53f94974beeb9bb612', false) && !trait_exists('ComposerAutoloaderInit9e212646fba0cf53f94974beeb9bb612', false)) {
-    spl_autoload_call('_PhpScoper3fe455fa007d\ComposerAutoloaderInit9e212646fba0cf53f94974beeb9bb612');
+if (!class_exists('ComposerAutoloaderInitb61fcd6bc70b3886a80abaed98d560e1', false) && !interface_exists('ComposerAutoloaderInitb61fcd6bc70b3886a80abaed98d560e1', false) && !trait_exists('ComposerAutoloaderInitb61fcd6bc70b3886a80abaed98d560e1', false)) {
+    spl_autoload_call('_PhpScoper3fe455fa007d\ComposerAutoloaderInitb61fcd6bc70b3886a80abaed98d560e1');
 }
 
 // Functions whitelisting. For more information see:
@@ -39,9 +39,9 @@ if (!function_exists('includeIfExists')) {
         return \_PhpScoper3fe455fa007d\includeIfExists(...func_get_args());
     }
 }
-if (!function_exists('composerRequire9e212646fba0cf53f94974beeb9bb612')) {
-    function composerRequire9e212646fba0cf53f94974beeb9bb612() {
-        return \_PhpScoper3fe455fa007d\composerRequire9e212646fba0cf53f94974beeb9bb612(...func_get_args());
+if (!function_exists('composerRequireb61fcd6bc70b3886a80abaed98d560e1')) {
+    function composerRequireb61fcd6bc70b3886a80abaed98d560e1() {
+        return \_PhpScoper3fe455fa007d\composerRequireb61fcd6bc70b3886a80abaed98d560e1(...func_get_args());
     }
 }
 if (!function_exists('pd')) {
