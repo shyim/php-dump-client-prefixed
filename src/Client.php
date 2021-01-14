@@ -3,7 +3,7 @@
 declare (strict_types=1);
 namespace _PhpScoper3fe455fa007d\PhpDumpClient;
 
-use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\NullHighlighter;
+use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\HtmlHighlighter;
 use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Extensions\Doctrine;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Message;
@@ -103,7 +103,8 @@ class Client
     public function logSql(string $sql) : self
     {
         $msg = $this->createMessage();
-        $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\CodePayload((new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter(new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\NullHighlighter()))->format($sql), 'sql'));
+        $highlighterConfig = [\_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\HtmlHighlighter::HIGHLIGHT_PRE => 'style="color: black; background-color: #e8e8e8;filter: invert(1);"'];
+        $msg->payload(new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload((new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter(new \_PhpScoper3fe455fa007d\Doctrine\SqlFormatter\HtmlHighlighter($highlighterConfig)))->format($sql)));
         $this->send($msg);
         return $this;
     }
