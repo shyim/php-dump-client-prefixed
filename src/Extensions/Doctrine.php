@@ -14,7 +14,7 @@ class Doctrine
     }
     public function logQueryBuilder($queryBuilder) : \_PhpScoper3fe455fa007d\PhpDumpClient\Client
     {
-        if (!$queryBuilder instanceof \_PhpScoper3fe455fa007d\Doctrine\DBAL\Query\QueryBuilder) {
+        if (!$queryBuilder instanceof \Doctrine\DBAL\Query\QueryBuilder) {
             throw new \InvalidArgumentException('Argument one needs to be QueryBuilder');
         }
         $sql = $queryBuilder->getSQL();
