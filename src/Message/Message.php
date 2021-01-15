@@ -22,7 +22,7 @@ class Message extends \_PhpScoper3fe455fa007d\PhpDumpClient\Struct
     public function __construct(string $fileName, int $lineNumber)
     {
         $this->uuid = \_PhpScoper3fe455fa007d\PhpDumpClient\Uuid::randomHex();
-        $this->time = \time();
+        $this->time = \microtime(\true);
         $this->origin = new \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Origin($fileName, $lineNumber);
     }
     public function tag(string ...$tag) : self
