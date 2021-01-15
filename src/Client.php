@@ -8,7 +8,6 @@ use _PhpScoper3fe455fa007d\Doctrine\SqlFormatter\SqlFormatter;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Extensions\Doctrine;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Message;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\ClearPayload;
-use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\CodePayload;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\PausePayload;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload;
