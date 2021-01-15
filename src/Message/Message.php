@@ -10,7 +10,7 @@ class Message extends \_PhpScoper3fe455fa007d\PhpDumpClient\Struct
 {
     protected string $uuid;
     protected \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Origin $origin;
-    protected int $time;
+    protected float $time;
     /**
      * @var string[]
      */
