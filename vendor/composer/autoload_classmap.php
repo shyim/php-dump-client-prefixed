@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     '_PhpScoper3fe455fa007d\\Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     '_PhpScoper3fe455fa007d\\Doctrine\\SqlFormatter\\CliHighlighter' => $vendorDir . '/doctrine/sql-formatter/src/CliHighlighter.php',
     '_PhpScoper3fe455fa007d\\Doctrine\\SqlFormatter\\Cursor' => $vendorDir . '/doctrine/sql-formatter/src/Cursor.php',
