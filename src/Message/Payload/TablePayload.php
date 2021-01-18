@@ -5,9 +5,18 @@ namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload;
 
 class TablePayload extends \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload
 {
-    protected string $type = 'table';
-    protected array $headers = [];
-    protected array $rows = [];
+    /**
+     * @var string
+     */
+    protected $type = 'table';
+    /**
+     * @var array
+     */
+    protected $headers = [];
+    /**
+     * @var array
+     */
+    protected $rows = [];
     public function __construct(array $headers = [], array $rows = [])
     {
         $this->headers = $headers;
@@ -20,7 +29,7 @@ class TablePayload extends \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload
     }
     public function addHeader(string ...$header) : self
     {
-        $this->headers = [...$this->headers, $header];
+        $this->headers = \array_merge($this->headers, $header);
         return $this;
     }
     public function setRows(array $rows) : self

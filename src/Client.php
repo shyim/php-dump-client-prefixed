@@ -16,8 +16,14 @@ use _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\VarCloner;
 use _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\HtmlDumper;
 class Client
 {
-    private string $instanceUrl;
-    private array $tags = [];
+    /**
+     * @var string
+     */
+    private $instanceUrl;
+    /**
+     * @var array
+     */
+    private $tags = [];
     public function __construct()
     {
         $this->instanceUrl = $_SERVER['PHP_DUMP_SERVER_URL'] ?? 'http://localhost:9009';
@@ -83,7 +89,7 @@ class Client
     public function tag(string ...$tag) : self
     {
         $tagInstance = clone $this;
-        $tagInstance->tags = [...$tagInstance->tags, ...$tag];
+        $tagInstance->tags = \array_merge($tagInstance->tags, $tag);
         return $tagInstance;
     }
     public function pause(?string $title = null) : self

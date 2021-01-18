@@ -8,17 +8,26 @@ use _PhpScoper3fe455fa007d\PhpDumpClient\Struct;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Uuid;
 class Message extends \_PhpScoper3fe455fa007d\PhpDumpClient\Struct
 {
-    protected string $uuid;
-    protected \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Origin $origin;
-    protected float $time;
+    /**
+     * @var string
+     */
+    protected $uuid;
+    /**
+     * @var Origin
+     */
+    protected $origin;
+    /**
+     * @var float
+     */
+    protected $time;
     /**
      * @var string[]
      */
-    protected array $tags = [];
+    protected $tags = [];
     /**
      * @var AbstractPayload[]
      */
-    protected array $payloads = [];
+    protected $payloads = [];
     public function __construct(string $fileName, int $lineNumber)
     {
         $this->uuid = \_PhpScoper3fe455fa007d\PhpDumpClient\Uuid::randomHex();
@@ -27,7 +36,7 @@ class Message extends \_PhpScoper3fe455fa007d\PhpDumpClient\Struct
     }
     public function tag(string ...$tag) : self
     {
-        $this->tags = [...$this->tags, ...$tag];
+        $this->tags = \array_merge($this->tags, $tag);
         return $this;
     }
     public function payload(\_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload $payload) : self

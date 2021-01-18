@@ -6,8 +6,14 @@ namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Struct;
 class Origin extends \_PhpScoper3fe455fa007d\PhpDumpClient\Struct
 {
-    protected string $fileName;
-    protected int $lineNumber;
+    /**
+     * @var string
+     */
+    protected $fileName;
+    /**
+     * @var int
+     */
+    protected $lineNumber;
     public function __construct(string $fileName, int $lineNumber)
     {
         $this->fileName = $fileName;

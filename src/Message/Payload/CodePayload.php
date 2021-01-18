@@ -5,9 +5,18 @@ namespace _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload;
 
 class CodePayload extends \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\AbstractPayload
 {
-    protected string $type = 'code';
-    protected string $code;
-    protected string $language;
+    /**
+     * @var string
+     */
+    protected $type = 'code';
+    /**
+     * @var string
+     */
+    protected $code;
+    /**
+     * @var string
+     */
+    protected $language;
     public function __construct(string $code, string $language = 'text')
     {
         $this->code = $code;

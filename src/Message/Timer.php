@@ -8,12 +8,30 @@ use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\HtmlPayload;
 use _PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload;
 class Timer
 {
-    private float $time;
-    private int $memoryUsage;
-    private int $peakMemoryUsage;
-    private \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Payload\TablePayload $table;
-    private \_PhpScoper3fe455fa007d\PhpDumpClient\Client $client;
-    private \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message $message;
+    /**
+     * @var float
+     */
+    private $time;
+    /**
+     * @var int
+     */
+    private $memoryUsage;
+    /**
+     * @var int
+     */
+    private $peakMemoryUsage;
+    /**
+     * @var TablePayload
+     */
+    private $table;
+    /**
+     * @var Client
+     */
+    private $client;
+    /**
+     * @var Message
+     */
+    private $message;
     public function __construct(string $title, \_PhpScoper3fe455fa007d\PhpDumpClient\Message\Message $message, \_PhpScoper3fe455fa007d\PhpDumpClient\Client $client)
     {
         $this->time = \microtime(\true);
