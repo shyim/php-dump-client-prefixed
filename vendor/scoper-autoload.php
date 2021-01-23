@@ -6,8 +6,8 @@ $loader = require_once __DIR__.'/autoload.php';
 
 // Aliases for the whitelisted classes. For more information see:
 // https://github.com/humbug/php-scoper/blob/master/README.md#class-whitelisting
-if (!class_exists('ComposerAutoloaderInit886cd8ac461dccc93269251f3cfc2fac', false) && !interface_exists('ComposerAutoloaderInit886cd8ac461dccc93269251f3cfc2fac', false) && !trait_exists('ComposerAutoloaderInit886cd8ac461dccc93269251f3cfc2fac', false)) {
-    spl_autoload_call('_PhpScoper3fe455fa007d\ComposerAutoloaderInit886cd8ac461dccc93269251f3cfc2fac');
+if (!class_exists('ComposerAutoloaderInit0e91349d7ad6f768bbe09ff994b42731', false) && !interface_exists('ComposerAutoloaderInit0e91349d7ad6f768bbe09ff994b42731', false) && !trait_exists('ComposerAutoloaderInit0e91349d7ad6f768bbe09ff994b42731', false)) {
+    spl_autoload_call('_PhpScoper3fe455fa007d\ComposerAutoloaderInit0e91349d7ad6f768bbe09ff994b42731');
 }
 if (!class_exists('ValueError', false) && !interface_exists('ValueError', false) && !trait_exists('ValueError', false)) {
     spl_autoload_call('_PhpScoper3fe455fa007d\ValueError');
@@ -24,9 +24,9 @@ if (!class_exists('Stringable', false) && !interface_exists('Stringable', false)
 
 // Functions whitelisting. For more information see:
 // https://github.com/humbug/php-scoper/blob/master/README.md#functions-whitelisting
-if (!function_exists('composerRequire886cd8ac461dccc93269251f3cfc2fac')) {
-    function composerRequire886cd8ac461dccc93269251f3cfc2fac() {
-        return \_PhpScoper3fe455fa007d\composerRequire886cd8ac461dccc93269251f3cfc2fac(...func_get_args());
+if (!function_exists('composerRequire0e91349d7ad6f768bbe09ff994b42731')) {
+    function composerRequire0e91349d7ad6f768bbe09ff994b42731() {
+        return \_PhpScoper3fe455fa007d\composerRequire0e91349d7ad6f768bbe09ff994b42731(...func_get_args());
     }
 }
 if (!function_exists('dump')) {
