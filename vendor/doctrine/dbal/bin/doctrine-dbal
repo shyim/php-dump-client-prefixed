@@ -1,5 +1,0 @@
-#!/usr/bin/env php
-<?php 
-namespace _PhpScoper3fe455fa007d;
-
-require __DIR__ . '/doctrine-dbal.php';
