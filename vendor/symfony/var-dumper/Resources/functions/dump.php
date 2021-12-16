@@ -28,8 +28,14 @@ if (!\function_exists('_PhpScoper3fe455fa007d\\dump')) {
     }
 }
 if (!\function_exists('_PhpScoper3fe455fa007d\\dd')) {
+    /**
+     * @return never
+     */
     function dd(...$vars)
     {
+        if (!\in_array(\PHP_SAPI, ['cli', 'phpdbg'], \true) && !\headers_sent()) {
+            \header('HTTP/1.1 500 Internal Server Error');
+        }
         foreach ($vars as $v) {
             \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\VarDumper::dump($v);
         }

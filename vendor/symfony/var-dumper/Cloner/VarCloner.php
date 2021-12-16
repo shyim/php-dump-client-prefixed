@@ -76,32 +76,41 @@ class VarCloner extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Clon
             foreach ($vals as $k => $v) {
                 // $v is the original value or a stub object in case of hard references
                 if (\PHP_VERSION_ID >= 70400) {
-                    $zvalIsRef = null !== \ReflectionReference::fromArrayElement($vals, $k);
+                    $zvalRef = ($r = \ReflectionReference::fromArrayElement($vals, $k)) ? $r->getId() : null;
                 } else {
                     $refs[$k] = $cookie;
-                    $zvalIsRef = $vals[$k] === $cookie;
+                    $zvalRef = $vals[$k] === $cookie;
                 }
-                if ($zvalIsRef) {
+                if ($zvalRef) {
                     $vals[$k] =& $stub;
                     // Break hard references to make $queue completely
                     unset($stub);
                     // independent from the original structure
-                    if ($v instanceof \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub && isset($hardRefs[\spl_object_id($v)])) {
-                        $vals[$k] = $refs[$k] = $v;
+                    if (\PHP_VERSION_ID >= 70400 ? null !== ($vals[$k] = $hardRefs[$zvalRef] ?? null) : $v instanceof \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub && isset($hardRefs[\spl_object_id($v)])) {
+                        if (\PHP_VERSION_ID >= 70400) {
+                            $v = $vals[$k];
+                        } else {
+                            $refs[$k] = $vals[$k] = $v;
+                        }
                         if ($v->value instanceof \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub && (\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::TYPE_OBJECT === $v->value->type || \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::TYPE_RESOURCE === $v->value->type)) {
                             ++$v->value->refCount;
                         }
                         ++$v->refCount;
                         continue;
                     }
-                    $refs[$k] = $vals[$k] = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub();
-                    $refs[$k]->value = $v;
-                    $h = \spl_object_id($refs[$k]);
-                    $hardRefs[$h] =& $refs[$k];
-                    $values[$h] = $v;
+                    $vals[$k] = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub();
+                    $vals[$k]->value = $v;
                     $vals[$k]->handle = ++$refsCounter;
+                    if (\PHP_VERSION_ID >= 70400) {
+                        $hardRefs[$zvalRef] = $vals[$k];
+                    } else {
+                        $refs[$k] = $vals[$k];
+                        $h = \spl_object_id($refs[$k]);
+                        $hardRefs[$h] =& $refs[$k];
+                        $values[$h] = $v;
+                    }
                 }
-                // Create $stub when the original value $v can not be used directly
+                // Create $stub when the original value $v cannot be used directly
                 // If $v is a nested structure, put that structure in array $a
                 switch (\true) {
                     case null === $v:
@@ -139,34 +148,48 @@ class VarCloner extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Clon
                             continue 2;
                         }
                         $stub = $arrayStub;
+                        if (\PHP_VERSION_ID >= 80100) {
+                            $stub->class = array_is_list($v) ? \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::ARRAY_INDEXED : \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::ARRAY_ASSOC;
+                            $a = $v;
+                            break;
+                        }
                         $stub->class = \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::ARRAY_INDEXED;
                         $j = -1;
                         foreach ($v as $gk => $gv) {
                             if ($gk !== ++$j) {
                                 $stub->class = \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::ARRAY_ASSOC;
+                                $a = $v;
+                                $a[$gid] = \true;
                                 break;
                             }
                         }
-                        $a = $v;
-                        if (\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::ARRAY_ASSOC === $stub->class) {
-                            // Copies of $GLOBALS have very strange behavior,
-                            // let's detect them with some black magic
-                            $a[$gid] = \true;
-                            // Happens with copies of $GLOBALS
-                            if (isset($v[$gid])) {
-                                unset($v[$gid]);
-                                $a = [];
-                                foreach ($v as $gk => &$gv) {
-                                    $a[$gk] =& $gv;
+                        // Copies of $GLOBALS have very strange behavior,
+                        // let's detect them with some black magic
+                        if (isset($v[$gid])) {
+                            unset($v[$gid]);
+                            $a = [];
+                            foreach ($v as $gk => &$gv) {
+                                if ($v === $gv && (\PHP_VERSION_ID < 70400 || !isset($hardRefs[\ReflectionReference::fromArrayElement($v, $gk)->getId()]))) {
+                                    unset($v);
+                                    $v = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub();
+                                    $v->value = [$v->cut = \count($gv), \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::TYPE_ARRAY => 0];
+                                    $v->handle = -1;
+                                    if (\PHP_VERSION_ID >= 70400) {
+                                        $gv =& $a[$gk];
+                                        $hardRefs[\ReflectionReference::fromArrayElement($a, $gk)->getId()] =& $gv;
+                                    } else {
+                                        $gv =& $hardRefs[\spl_object_id($v)];
+                                    }
+                                    $gv = $v;
                                 }
-                                unset($gv);
-                            } else {
-                                $a = $v;
+                                $a[$gk] =& $gv;
                             }
+                            unset($gv);
+                        } else {
+                            $a = $v;
                         }
                         break;
                     case \is_object($v):
-                    case $v instanceof \__PHP_Incomplete_Class:
                         if (empty($objRefs[$h = \spl_object_id($v)])) {
                             $stub = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub();
                             $stub->type = \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub::TYPE_OBJECT;
@@ -249,10 +272,12 @@ class VarCloner extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Clon
                         self::$arrayCache[$arrayStub->class][$arrayStub->position] = $stub = [$arrayStub->class => $arrayStub->position];
                     }
                 }
-                if ($zvalIsRef) {
-                    $refs[$k]->value = $stub;
-                } else {
+                if (!$zvalRef) {
                     $vals[$k] = $stub;
+                } elseif (\PHP_VERSION_ID >= 70400) {
+                    $hardRefs[$zvalRef]->value = $stub;
+                } else {
+                    $refs[$k]->value = $stub;
                 }
             }
             if ($fromObjCast) {

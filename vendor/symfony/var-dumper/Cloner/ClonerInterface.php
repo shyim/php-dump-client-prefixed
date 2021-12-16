@@ -20,7 +20,7 @@ interface ClonerInterface
      *
      * @param mixed $var Any PHP variable
      *
-     * @return Data The cloned variable represented by a Data object
+     * @return Data
      */
     public function cloneVar($var);
 }

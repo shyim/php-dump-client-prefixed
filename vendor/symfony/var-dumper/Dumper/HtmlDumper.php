@@ -68,20 +68,15 @@ class HtmlDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dum
     }
     /**
      * Sets an HTML header that will be dumped once in the output stream.
-     *
-     * @param string $header An HTML string
      */
-    public function setDumpHeader($header)
+    public function setDumpHeader(?string $header)
     {
         $this->dumpHeader = $header;
     }
     /**
      * Sets an HTML prefix and suffix that will encapse every single dump.
-     *
-     * @param string $prefix The prepended HTML string
-     * @param string $suffix The appended HTML string
      */
-    public function setDumpBoundaries($prefix, $suffix)
+    public function setDumpBoundaries(string $prefix, string $suffix)
     {
         $this->dumpPrefix = $prefix;
         $this->dumpSuffix = $suffix;
@@ -101,7 +96,7 @@ class HtmlDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dum
      */
     protected function getDumpHeader()
     {
-        $this->headerIsDumped = null !== $this->outputStream ? $this->outputStream : $this->lineDumper;
+        $this->headerIsDumped = $this->outputStream ?? $this->lineDumper;
         if (null !== $this->dumpHeader) {
             return $this->dumpHeader;
         }
@@ -788,7 +783,7 @@ EOHTML
     /**
      * {@inheritdoc}
      */
-    protected function style($style, $value, $attr = [])
+    protected function style(string $style, string $value, array $attr = [])
     {
         if ('' === $value) {
             return '';
@@ -848,11 +843,11 @@ EOHTML
                     }
                     $s .= '">';
                 }
-                $s .= isset($map[$c[$i]]) ? $map[$c[$i]] : \sprintf('\\x%02X', \ord($c[$i]));
+                $s .= $map[$c[$i]] ?? \sprintf('\\x%02X', \ord($c[$i]));
             } while (isset($c[++$i]));
             return $s . '</span>';
         }, $v) . '</span>';
-        if (isset($attr['file']) && ($href = $this->getSourceLink($attr['file'], isset($attr['line']) ? $attr['line'] : 0))) {
+        if (isset($attr['file']) && ($href = $this->getSourceLink($attr['file'], $attr['line'] ?? 0))) {
             $attr['href'] = $href;
         }
         if (isset($attr['href'])) {
@@ -872,7 +867,7 @@ EOHTML
         if (-1 === $this->lastDepth) {
             $this->line = \sprintf($this->dumpPrefix, $this->dumpId, $this->indentPad) . $this->line;
         }
-        if ($this->headerIsDumped !== (null !== $this->outputStream ? $this->outputStream : $this->lineDumper)) {
+        if ($this->headerIsDumped !== ($this->outputStream ?? $this->lineDumper)) {
             $this->line = $this->getDumpHeader() . $this->line;
         }
         if (-1 === $depth) {
@@ -899,7 +894,7 @@ EOHTML
         return \false;
     }
 }
-function esc($str)
+function esc(string $str)
 {
     return \htmlspecialchars($str, \ENT_QUOTES, 'UTF-8');
 }

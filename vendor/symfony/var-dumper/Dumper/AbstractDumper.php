@@ -57,13 +57,13 @@ abstract class AbstractDumper implements \_PhpScoper3fe455fa007d\Symfony\Compone
      */
     public function setOutput($output)
     {
-        $prev = null !== $this->outputStream ? $this->outputStream : $this->lineDumper;
+        $prev = $this->outputStream ?? $this->lineDumper;
         if (\is_callable($output)) {
             $this->outputStream = null;
             $this->lineDumper = $output;
         } else {
             if (\is_string($output)) {
-                $output = \fopen($output, 'wb');
+                $output = \fopen($output, 'w');
             }
             $this->outputStream = $output;
             $this->lineDumper = [$this, 'echoLine'];
@@ -111,7 +111,7 @@ abstract class AbstractDumper implements \_PhpScoper3fe455fa007d\Symfony\Compone
             \setlocale(\LC_NUMERIC, 'C');
         }
         if ($returnDump = \true === $output) {
-            $output = \fopen('php://memory', 'r+b');
+            $output = \fopen('php://memory', 'r+');
         }
         if ($output) {
             $prevOutput = $this->setOutput($output);
@@ -157,7 +157,7 @@ abstract class AbstractDumper implements \_PhpScoper3fe455fa007d\Symfony\Compone
     /**
      * Converts a non-UTF-8 string to UTF-8.
      *
-     * @return string|null The string converted to UTF-8
+     * @return string|null
      */
     protected function utf8Encode(?string $s)
     {

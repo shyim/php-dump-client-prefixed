@@ -102,9 +102,15 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
                 break;
             case 'integer':
                 $style = 'num';
+                if (isset($this->styles['integer'])) {
+                    $style = 'integer';
+                }
                 break;
             case 'double':
                 $style = 'num';
+                if (isset($this->styles['float'])) {
+                    $style = 'float';
+                }
                 switch (\true) {
                     case \INF === $value:
                         $value = 'INF';
@@ -117,7 +123,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
                         break;
                     default:
                         $value = (string) $value;
-                        if (\false === \strpos($value, $this->decimalPoint)) {
+                        if (!\str_contains($value, $this->decimalPoint)) {
                             $value .= $this->decimalPoint . '0';
                         }
                         break;
@@ -267,7 +273,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
      * @param bool $hasChild When the dump of the hash has child item
      * @param int  $cut      The number of items the hash has been cut by
      */
-    protected function dumpEllipsis(\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Cursor $cursor, $hasChild, $cut)
+    protected function dumpEllipsis(\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Cursor $cursor, bool $hasChild, int $cut)
     {
         if ($cut) {
             $this->line .= ' …';
@@ -344,7 +350,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
                                 $this->expandNextHash = \true;
                             }
                         }
-                        $this->line .= $bin . $this->style($style, $key[1], $attr) . (isset($attr['separator']) ? $attr['separator'] : ': ');
+                        $this->line .= $bin . $this->style($style, $key[1], $attr) . ($attr['separator'] ?? ': ');
                     } else {
                         // This case should not happen
                         $this->line .= '-' . $bin . '"' . $this->style('private', $key, ['class' => '']) . '": ';
@@ -363,9 +369,9 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
      * @param string $value The value being styled
      * @param array  $attr  Optional context information
      *
-     * @return string The value with style decoration
+     * @return string
      */
-    protected function style($style, $value, $attr = [])
+    protected function style(string $style, string $value, array $attr = [])
     {
         if (null === $this->colors) {
             $this->colors = $this->supportsColors();
@@ -375,7 +381,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
         }
         if (isset($attr['ellipsis'], $attr['ellipsis-type'])) {
             $prefix = \substr($value, 0, -$attr['ellipsis']);
-            if ('cli' === \PHP_SAPI && 'path' === $attr['ellipsis-type'] && isset($_SERVER[$pwd = '\\' === \DIRECTORY_SEPARATOR ? 'CD' : 'PWD']) && 0 === \strpos($prefix, $_SERVER[$pwd])) {
+            if ('cli' === \PHP_SAPI && 'path' === $attr['ellipsis-type'] && isset($_SERVER[$pwd = '\\' === \DIRECTORY_SEPARATOR ? 'CD' : 'PWD']) && \str_starts_with($prefix, $_SERVER[$pwd])) {
                 $prefix = '.' . \substr($prefix, \strlen($_SERVER[$pwd]));
             }
             if (!empty($attr['ellipsis-tail'])) {
@@ -394,7 +400,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
             $s = $startCchr;
             $c = $c[$i = 0];
             do {
-                $s .= isset($map[$c[$i]]) ? $map[$c[$i]] : \sprintf('\\x%02X', \ord($c[$i]));
+                $s .= $map[$c[$i]] ?? \sprintf('\\x%02X', \ord($c[$i]));
             } while (isset($c[++$i]));
             return $s . $endCchr;
         }, $value, -1, $cchrCount);
@@ -404,7 +410,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
             } else {
                 $value = "\33[{$this->styles[$style]}m" . $value;
             }
-            if ($cchrCount && $endCchr === \substr($value, -\strlen($endCchr))) {
+            if ($cchrCount && \str_ends_with($value, $endCchr)) {
                 $value = \substr($value, 0, -\strlen($endCchr));
             } else {
                 $value .= "\33[{$this->styles['default']}m";
@@ -412,7 +418,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
         }
         href:
         if ($this->colors && $this->handlesHrefGracefully) {
-            if (isset($attr['file']) && ($href = $this->getSourceLink($attr['file'], isset($attr['line']) ? $attr['line'] : 0))) {
+            if (isset($attr['file']) && ($href = $this->getSourceLink($attr['file'], $attr['line'] ?? 0))) {
                 if ('note' === $style) {
                     $value .= "\33]8;;{$href}\33\\^\33]8;;\33\\";
                 } else {
@@ -428,7 +434,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
         return $value;
     }
     /**
-     * @return bool Tells if the current output stream supports ANSI colors or not
+     * @return bool
      */
     protected function supportsColors()
     {
@@ -462,7 +468,7 @@ class CliDumper extends \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dump
             }
         }
         $h = \stream_get_meta_data($this->outputStream) + ['wrapper_type' => null];
-        $h = 'Output' === $h['stream_type'] && 'PHP' === $h['wrapper_type'] ? \fopen('php://stdout', 'wb') : $this->outputStream;
+        $h = 'Output' === $h['stream_type'] && 'PHP' === $h['wrapper_type'] ? \fopen('php://stdout', 'w') : $this->outputStream;
         return static::$defaultColors = $this->hasColorSupport($h);
     }
     /**

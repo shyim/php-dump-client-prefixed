@@ -10,7 +10,6 @@
  */
 namespace _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Command\Descriptor;
 
-use _PhpScoper3fe455fa007d\Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Input\ArrayInput;
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Output\OutputInterface;
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Style\SymfonyStyle;
@@ -27,17 +26,15 @@ class CliDescriptor implements \_PhpScoper3fe455fa007d\Symfony\Component\VarDump
 {
     private $dumper;
     private $lastIdentifier;
-    private $supportsHref;
     public function __construct(\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\CliDumper $dumper)
     {
         $this->dumper = $dumper;
-        $this->supportsHref = \method_exists(\_PhpScoper3fe455fa007d\Symfony\Component\Console\Formatter\OutputFormatterStyle::class, 'setHref');
     }
     public function describe(\_PhpScoper3fe455fa007d\Symfony\Component\Console\Output\OutputInterface $output, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Data $data, array $context, int $clientId) : void
     {
         $io = $output instanceof \_PhpScoper3fe455fa007d\Symfony\Component\Console\Style\SymfonyStyle ? $output : new \_PhpScoper3fe455fa007d\Symfony\Component\Console\Style\SymfonyStyle(new \_PhpScoper3fe455fa007d\Symfony\Component\Console\Input\ArrayInput([]), $output);
         $this->dumper->setColors($output->isDecorated());
-        $rows = [['date', \date('r', $context['timestamp'])]];
+        $rows = [['date', \date('r', (int) $context['timestamp'])]];
         $lastIdentifier = $this->lastIdentifier;
         $this->lastIdentifier = $clientId;
         $section = "Received from client #{$clientId}";
@@ -58,8 +55,7 @@ class CliDescriptor implements \_PhpScoper3fe455fa007d\Symfony\Component\VarDump
         if (isset($context['source'])) {
             $source = $context['source'];
             $sourceInfo = \sprintf('%s on line %d', $source['name'], $source['line']);
-            $fileLink = $source['file_link'] ?? null;
-            if ($this->supportsHref && $fileLink) {
+            if ($fileLink = $source['file_link'] ?? null) {
                 $sourceInfo = \sprintf('<href=%s>%s</>', $fileLink, $sourceInfo);
             }
             $rows[] = ['source', $sourceInfo];
@@ -67,10 +63,6 @@ class CliDescriptor implements \_PhpScoper3fe455fa007d\Symfony\Component\VarDump
             $rows[] = ['file', $file];
         }
         $io->table([], $rows);
-        if (!$this->supportsHref && isset($fileLink)) {
-            $io->writeln(['<info>Open source in your IDE/browser:</info>', $fileLink]);
-            $io->newLine();
-        }
         $this->dumper->dump($data);
         $io->newLine();
     }

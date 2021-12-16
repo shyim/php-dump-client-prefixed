@@ -21,6 +21,9 @@ class Connection
 {
     private $host;
     private $contextProviders;
+    /**
+     * @var resource|null
+     */
     private $socket;
     /**
      * @param string                     $host             The server host
@@ -28,7 +31,7 @@ class Connection
      */
     public function __construct(string $host, array $contextProviders = [])
     {
-        if (\false === \strpos($host, '://')) {
+        if (!\str_contains($host, '://')) {
             $host = 'tcp://' . $host;
         }
         $this->host = $host;
@@ -68,7 +71,7 @@ class Connection
         }
         return \false;
     }
-    private static function nullErrorHandler($t, $m)
+    private static function nullErrorHandler(int $t, string $m)
     {
         // no-op
     }

@@ -34,7 +34,7 @@ class DateCaster
     }
     public static function castInterval(\DateInterval $interval, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested, int $filter)
     {
-        $now = new \DateTimeImmutable();
+        $now = new \DateTimeImmutable('@0', new \DateTimeZone('UTC'));
         $numberOfSeconds = $now->add($interval)->getTimestamp() - $now->getTimestamp();
         $title = \number_format($numberOfSeconds, 0, '.', ' ') . 's';
         $i = [\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Caster\Caster::PREFIX_VIRTUAL . 'interval' => new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Caster\ConstStub(self::formatInterval($interval), $title)];
@@ -44,7 +44,8 @@ class DateCaster
     {
         $format = '%R ';
         if (0 === $i->y && 0 === $i->m && ($i->h >= 24 || $i->i >= 60 || $i->s >= 60)) {
-            $i = \date_diff($d = new \DateTime(), \date_add(clone $d, $i));
+            $d = new \DateTimeImmutable('@0', new \DateTimeZone('UTC'));
+            $i = $d->diff($d->add($i));
             // recalculate carry over points
             $format .= 0 < $i->days ? '%ad ' : '';
         } else {
@@ -67,7 +68,7 @@ class DateCaster
         $dates = [];
         foreach (clone $p as $i => $d) {
             if (self::PERIOD_LIMIT === $i) {
-                $now = new \DateTimeImmutable();
+                $now = new \DateTimeImmutable('now', new \DateTimeZone('UTC'));
                 $dates[] = \sprintf('%s more', ($end = $p->getEndDate()) ? \ceil(($end->format('U.u') - $d->format('U.u')) / ((int) $now->add($p->getDateInterval())->format('U.u') - (int) $now->format('U.u'))) : $p->recurrences - $i);
                 break;
             }

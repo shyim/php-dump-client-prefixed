@@ -20,7 +20,7 @@ use _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub;
  */
 class SplCaster
 {
-    private static $splFileObjectFlags = [\SplFileObject::DROP_NEW_LINE => 'DROP_NEW_LINE', \SplFileObject::READ_AHEAD => 'READ_AHEAD', \SplFileObject::SKIP_EMPTY => 'SKIP_EMPTY', \SplFileObject::READ_CSV => 'READ_CSV'];
+    private const SPL_FILE_OBJECT_FLAGS = [\SplFileObject::DROP_NEW_LINE => 'DROP_NEW_LINE', \SplFileObject::READ_AHEAD => 'READ_AHEAD', \SplFileObject::SKIP_EMPTY => 'SKIP_EMPTY', \SplFileObject::READ_CSV => 'READ_CSV'];
     public static function castArrayObject(\ArrayObject $c, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested)
     {
         return self::castSplArray($c, $a, $stub, $isNested);
@@ -29,7 +29,7 @@ class SplCaster
     {
         return self::castSplArray($c, $a, $stub, $isNested);
     }
-    public static function castHeap(\Iterator $c, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, $isNested)
+    public static function castHeap(\Iterator $c, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested)
     {
         $a += [\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Caster\Caster::PREFIX_VIRTUAL . 'heap' => \iterator_to_array(clone $c)];
         return $a;
@@ -77,7 +77,7 @@ class SplCaster
             } catch (\Exception $e) {
             }
         }
-        if (isset($a[$prefix . 'realPath'])) {
+        if ($a[$prefix . 'realPath'] ?? \false) {
             $a[$prefix . 'realPath'] = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Caster\LinkStub($a[$prefix . 'realPath']);
         }
         if (isset($a[$prefix . 'perms'])) {
@@ -103,7 +103,7 @@ class SplCaster
         }
         if (isset($a[$prefix . 'flags'])) {
             $flagsArray = [];
-            foreach (self::$splFileObjectFlags as $value => $name) {
+            foreach (self::SPL_FILE_OBJECT_FLAGS as $value => $name) {
                 if ($a[$prefix . 'flags'] & $value) {
                     $flagsArray[] = $name;
                 }

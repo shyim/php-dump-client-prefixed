@@ -62,6 +62,6 @@ class Doctrine
                 $result = $result ? '1' : '0';
                 break;
         }
-        return $result;
+        return (string) $result;
     }
 }

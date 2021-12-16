@@ -18,7 +18,7 @@ namespace _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\ContextProvi
 interface ContextProviderInterface
 {
     /**
-     * @return array|null Context data or null if unable to provide any context
+     * @return array|null
      */
     public function getContext() : ?array;
 }

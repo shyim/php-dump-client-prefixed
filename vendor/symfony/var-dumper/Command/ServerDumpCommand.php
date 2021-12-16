@@ -11,6 +11,8 @@
 namespace _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Command;
 
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Command\Command;
+use _PhpScoper3fe455fa007d\Symfony\Component\Console\Completion\CompletionInput;
+use _PhpScoper3fe455fa007d\Symfony\Component\Console\Completion\CompletionSuggestions;
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Exception\InvalidArgumentException;
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Input\InputInterface;
 use _PhpScoper3fe455fa007d\Symfony\Component\Console\Input\InputOption;
@@ -33,6 +35,7 @@ use _PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Server\DumpServer;
 class ServerDumpCommand extends \_PhpScoper3fe455fa007d\Symfony\Component\Console\Command\Command
 {
     protected static $defaultName = 'server:dump';
+    protected static $defaultDescription = 'Start a dump server that collects and displays dumps in a single place';
     private $server;
     /** @var DumpDescriptorInterface[] */
     private $descriptors;
@@ -44,8 +47,7 @@ class ServerDumpCommand extends \_PhpScoper3fe455fa007d\Symfony\Component\Consol
     }
     protected function configure()
     {
-        $availableFormats = \implode(', ', \array_keys($this->descriptors));
-        $this->addOption('format', null, \_PhpScoper3fe455fa007d\Symfony\Component\Console\Input\InputOption::VALUE_REQUIRED, \sprintf('The output format (%s)', $availableFormats), 'cli')->setDescription('Starts a dump server that collects and displays dumps in a single place')->setHelp(<<<'EOF'
+        $this->addOption('format', null, \_PhpScoper3fe455fa007d\Symfony\Component\Console\Input\InputOption::VALUE_REQUIRED, \sprintf('The output format (%s)', \implode(', ', $this->getAvailableFormats())), 'cli')->setDescription(self::$defaultDescription)->setHelp(<<<'EOF'
 <info>%command.name%</info> starts a dump server that collects and displays
 dumps in a single place for debugging you application:
 
@@ -74,5 +76,16 @@ EOF
         $this->server->listen(function (\_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Data $data, array $context, int $clientId) use($descriptor, $io) {
             $descriptor->describe($io, $data, $context, $clientId);
         });
+        return 0;
+    }
+    public function complete(\_PhpScoper3fe455fa007d\Symfony\Component\Console\Completion\CompletionInput $input, \_PhpScoper3fe455fa007d\Symfony\Component\Console\Completion\CompletionSuggestions $suggestions) : void
+    {
+        if ($input->mustSuggestOptionValuesFor('format')) {
+            $suggestions->suggestValues($this->getAvailableFormats());
+        }
+    }
+    private function getAvailableFormats() : array
+    {
+        return \array_keys($this->descriptors);
     }
 }

@@ -43,6 +43,7 @@ return array(
     '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\DsPairStub' => $vendorDir . '/symfony/var-dumper/Caster/DsPairStub.php',
     '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\EnumStub' => $vendorDir . '/symfony/var-dumper/Caster/EnumStub.php',
     '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\ExceptionCaster' => $vendorDir . '/symfony/var-dumper/Caster/ExceptionCaster.php',
+    '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\FiberCaster' => $vendorDir . '/symfony/var-dumper/Caster/FiberCaster.php',
     '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\FrameStub' => $vendorDir . '/symfony/var-dumper/Caster/FrameStub.php',
     '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\GmpCaster' => $vendorDir . '/symfony/var-dumper/Caster/GmpCaster.php',
     '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\ImagineCaster' => $vendorDir . '/symfony/var-dumper/Caster/ImagineCaster.php',

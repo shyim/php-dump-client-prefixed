@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0e91349d7ad6f768bbe09ff994b42731
+class ComposerStaticInite2f18b7bc8cf841566e5c8b002f1548f
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -85,6 +85,7 @@ class ComposerStaticInit0e91349d7ad6f768bbe09ff994b42731
         '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\DsPairStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/DsPairStub.php',
         '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\EnumStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/EnumStub.php',
         '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\ExceptionCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/ExceptionCaster.php',
+        '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\FiberCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/FiberCaster.php',
         '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\FrameStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/FrameStub.php',
         '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\GmpCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/GmpCaster.php',
         '_PhpScoper3fe455fa007d\\Symfony\\Component\\VarDumper\\Caster\\ImagineCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/ImagineCaster.php',
@@ -141,9 +142,9 @@ class ComposerStaticInit0e91349d7ad6f768bbe09ff994b42731
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0e91349d7ad6f768bbe09ff994b42731::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0e91349d7ad6f768bbe09ff994b42731::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit0e91349d7ad6f768bbe09ff994b42731::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite2f18b7bc8cf841566e5c8b002f1548f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite2f18b7bc8cf841566e5c8b002f1548f::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite2f18b7bc8cf841566e5c8b002f1548f::$classMap;
 
         }, null, ClassLoader::class);
     }

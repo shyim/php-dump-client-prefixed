@@ -1,17 +1,17 @@
 [
     {
         "name": "doctrine\/sql-formatter",
-        "version": "1.1.1",
-        "version_normalized": "1.1.1.0",
+        "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
         "source": {
             "type": "git",
             "url": "https:\/\/github.com\/doctrine\/sql-formatter.git",
-            "reference": "56070bebac6e77230ed7d306ad13528e60732871"
+            "reference": "20c39c2de286a9d3262cc8ed282a4ae60e265894"
         },
         "dist": {
             "type": "zip",
-            "url": "https:\/\/api.github.com\/repos\/doctrine\/sql-formatter\/zipball\/56070bebac6e77230ed7d306ad13528e60732871",
-            "reference": "56070bebac6e77230ed7d306ad13528e60732871",
+            "url": "https:\/\/api.github.com\/repos\/doctrine\/sql-formatter\/zipball\/20c39c2de286a9d3262cc8ed282a4ae60e265894",
+            "reference": "20c39c2de286a9d3262cc8ed282a4ae60e265894",
             "shasum": ""
         },
         "require": {
@@ -20,16 +20,11 @@
         "require-dev": {
             "bamarni\/composer-bin-plugin": "^1.4"
         },
-        "time": "2020-07-30T16:57:33+00:00",
+        "time": "2021-11-05T11:11:14+00:00",
         "bin": [
             "bin\/sql-formatter"
         ],
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.x-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
@@ -56,17 +51,17 @@
     },
     {
         "name": "symfony\/polyfill-mbstring",
-        "version": "v1.22.0",
-        "version_normalized": "1.22.0.0",
+        "version": "v1.23.1",
+        "version_normalized": "1.23.1.0",
         "source": {
             "type": "git",
             "url": "https:\/\/github.com\/symfony\/polyfill-mbstring.git",
-            "reference": "f377a3dd1fde44d37b9831d68dc8dea3ffd28e13"
+            "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6"
         },
         "dist": {
             "type": "zip",
-            "url": "https:\/\/api.github.com\/repos\/symfony\/polyfill-mbstring\/zipball\/f377a3dd1fde44d37b9831d68dc8dea3ffd28e13",
-            "reference": "f377a3dd1fde44d37b9831d68dc8dea3ffd28e13",
+            "url": "https:\/\/api.github.com\/repos\/symfony\/polyfill-mbstring\/zipball\/9174a3d80210dca8daa7f31fec659150bbeabfc6",
+            "reference": "9174a3d80210dca8daa7f31fec659150bbeabfc6",
             "shasum": ""
         },
         "require": {
@@ -75,11 +70,11 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2021-01-07T16:49:33+00:00",
+        "time": "2021-05-27T12:26:48+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-main": "1.22-dev"
+                "dev-main": "1.23-dev"
             },
             "thanks": {
                 "name": "symfony\/polyfill",
@@ -135,27 +130,27 @@
     },
     {
         "name": "symfony\/polyfill-php80",
-        "version": "v1.22.0",
-        "version_normalized": "1.22.0.0",
+        "version": "v1.23.1",
+        "version_normalized": "1.23.1.0",
         "source": {
             "type": "git",
             "url": "https:\/\/github.com\/symfony\/polyfill-php80.git",
-            "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91"
+            "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be"
         },
         "dist": {
             "type": "zip",
-            "url": "https:\/\/api.github.com\/repos\/symfony\/polyfill-php80\/zipball\/dc3063ba22c2a1fd2f45ed856374d79114998f91",
-            "reference": "dc3063ba22c2a1fd2f45ed856374d79114998f91",
+            "url": "https:\/\/api.github.com\/repos\/symfony\/polyfill-php80\/zipball\/1100343ed1a92e3a38f9ae122fc0eb21602547be",
+            "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be",
             "shasum": ""
         },
         "require": {
             "php": ">=7.1"
         },
-        "time": "2021-01-07T16:49:33+00:00",
+        "time": "2021-07-28T13:41:28+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-main": "1.22-dev"
+                "dev-main": "1.23-dev"
             },
             "thanks": {
                 "name": "symfony\/polyfill",
@@ -217,23 +212,23 @@
     },
     {
         "name": "symfony\/var-dumper",
-        "version": "v5.2.1",
-        "version_normalized": "5.2.1.0",
+        "version": "v5.4.1",
+        "version_normalized": "5.4.1.0",
         "source": {
             "type": "git",
             "url": "https:\/\/github.com\/symfony\/var-dumper.git",
-            "reference": "13e7e882eaa55863faa7c4ad7c60f12f1a8b5089"
+            "reference": "2366ac8d8abe0c077844613c1a4f0c0a9f522dcc"
         },
         "dist": {
             "type": "zip",
-            "url": "https:\/\/api.github.com\/repos\/symfony\/var-dumper\/zipball\/13e7e882eaa55863faa7c4ad7c60f12f1a8b5089",
-            "reference": "13e7e882eaa55863faa7c4ad7c60f12f1a8b5089",
+            "url": "https:\/\/api.github.com\/repos\/symfony\/var-dumper\/zipball\/2366ac8d8abe0c077844613c1a4f0c0a9f522dcc",
+            "reference": "2366ac8d8abe0c077844613c1a4f0c0a9f522dcc",
             "shasum": ""
         },
         "require": {
             "php": ">=7.2.5",
             "symfony\/polyfill-mbstring": "~1.0",
-            "symfony\/polyfill-php80": "^1.15"
+            "symfony\/polyfill-php80": "^1.16"
         },
         "conflict": {
             "phpunit\/phpunit": "<5.4.3",
@@ -241,16 +236,17 @@
         },
         "require-dev": {
             "ext-iconv": "*",
-            "symfony\/console": "^4.4|^5.0",
-            "symfony\/process": "^4.4|^5.0",
-            "twig\/twig": "^2.4|^3.0"
+            "symfony\/console": "^4.4|^5.0|^6.0",
+            "symfony\/process": "^4.4|^5.0|^6.0",
+            "symfony\/uid": "^5.1|^6.0",
+            "twig\/twig": "^2.13|^3.0.4"
         },
         "suggest": {
             "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony\/polyfill-iconv in case ext-iconv cannot be used).",
             "ext-intl": "To show region name in time zone dump",
             "symfony\/console": "To use the ServerDumpCommand and\/or the bin\/var-dump-server script"
         },
-        "time": "2020-12-16T17:02:19+00:00",
+        "time": "2021-12-01T15:04:08+00:00",
         "bin": [
             "Resources\/bin\/var-dump-server"
         ],
@@ -281,7 +277,7 @@
                 "homepage": "https:\/\/symfony.com\/contributors"
             }
         ],
-        "description": "Symfony mechanism for exploring and dumping PHP variables",
+        "description": "Provides mechanisms for walking through any arbitrary PHP variable",
         "homepage": "https:\/\/symfony.com",
         "keywords": [
             "debug",

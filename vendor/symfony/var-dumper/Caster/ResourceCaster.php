@@ -22,10 +22,8 @@ class ResourceCaster
 {
     /**
      * @param \CurlHandle|resource $h
-     *
-     * @return array
      */
-    public static function castCurl($h, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested)
+    public static function castCurl($h, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested) : array
     {
         return \curl_getinfo($h);
     }
@@ -42,7 +40,7 @@ class ResourceCaster
     public static function castStream($stream, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested)
     {
         $a = \stream_get_meta_data($stream) + static::castStreamContext($stream, $a, $stub, $isNested);
-        if (isset($a['uri'])) {
+        if ($a['uri'] ?? \false) {
             $a['uri'] = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Caster\LinkStub($a['uri']);
         }
         return $a;
@@ -51,7 +49,7 @@ class ResourceCaster
     {
         return @\stream_context_get_params($stream) ?: $a;
     }
-    public static function castGd($gd, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, $isNested)
+    public static function castGd($gd, array $a, \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Cloner\Stub $stub, bool $isNested)
     {
         $a['size'] = \imagesx($gd) . 'x' . \imagesy($gd);
         $a['trueColor'] = \imageistruecolor($gd);

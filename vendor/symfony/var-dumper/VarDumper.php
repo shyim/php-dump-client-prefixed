@@ -29,6 +29,9 @@ require_once __DIR__ . '/Resources/functions/dump.php';
  */
 class VarDumper
 {
+    /**
+     * @var callable|null
+     */
     private static $handler;
     public static function dump($var)
     {
@@ -37,6 +40,9 @@ class VarDumper
         }
         return (self::$handler)($var);
     }
+    /**
+     * @return callable|null
+     */
     public static function setHandler(callable $callable = null)
     {
         $prevHandler = self::$handler;
@@ -60,7 +66,7 @@ class VarDumper
                 $dumper = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\CliDumper();
                 break;
             case 'server' === $format:
-            case 'tcp' === \parse_url($format, \PHP_URL_SCHEME):
+            case $format && 'tcp' === \parse_url($format, \PHP_URL_SCHEME):
                 $host = 'server' === $format ? $_SERVER['VAR_DUMPER_SERVER'] ?? '127.0.0.1:9912' : $format;
                 $dumper = \in_array(\PHP_SAPI, ['cli', 'phpdbg'], \true) ? new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\CliDumper() : new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\HtmlDumper();
                 $dumper = new \_PhpScoper3fe455fa007d\Symfony\Component\VarDumper\Dumper\ServerDumper($host, $dumper, self::getDefaultContextProviders());
